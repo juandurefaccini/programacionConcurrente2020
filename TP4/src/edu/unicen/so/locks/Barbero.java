@@ -1,0 +1,32 @@
+package edu.unicen.so.locks;
+
+import edu.unicen.so.monitor.Barberia;
+import edu.unicen.so.monitor.Cliente;
+
+public class Barbero implements Runnable {
+	private int id;
+	private Barberia barberia;
+
+	public Barbero(int id, Barberia barberia) {
+		super();
+		this.id = id;
+		this.barberia = barberia;
+	}
+
+	@Override
+	public void run() {
+		while(true) {
+			//Espera durmiendo hasta que haya clientes disponibles
+			Cliente siguiente = this.barberia.obtenerSiguiente();
+			System.out.println("El barbero "+this.id + " atiende a "+siguiente.getId());
+			try {
+				Thread.sleep((long) (2000 * Math.random() + 100));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			System.out.println("El barbero "+this.id + " le corto el pelo a "+siguiente.getId());
+			siguiente.setAtendido();
+		}
+	}
+
+}
