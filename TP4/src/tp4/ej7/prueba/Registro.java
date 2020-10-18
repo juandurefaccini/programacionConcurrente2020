@@ -1,4 +1,4 @@
-package tp4.prueba;
+package tp4.ej7.prueba;
 
 public class Registro {
     int id;

@@ -1,27 +1,31 @@
-package tp4.prueba;
+package tp4.ej7.prueba;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Semaphore;
 
 public class ConjRegistros {
     Registro registro;
     Semaphore semaphoreEscritor = new Semaphore(1);
+    Semaphore semaphoreLector = new Semaphore(5);
+    // 0 --> 5      0
     int cant = 0;
 
     public ConjRegistros(Registro registro) {
         this.registro = registro;
     }
 
-    public synchronized boolean intentarLeer() {
-        if (semaphoreEscritor.availablePermits() == 0){
-            System.out.println("Hay alguien");
-            return semaphoreEscritor.tryAcquire();
+    public boolean intentarLeer() {
+        if (semaphoreEscritor.availablePermits() == 0){ //Esta escrbiendo
+            System.out.println("Hay alguien"); //Escriubiendo
+            try {
+                semaphoreEscritor.acquire(); //Falso
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        return true;
+        return false;
     }
 
-    public synchronized void intentarEscribir() {
+    public void intentarEscribir() {
         try {
             semaphoreEscritor.acquire();
         } catch (InterruptedException e) {

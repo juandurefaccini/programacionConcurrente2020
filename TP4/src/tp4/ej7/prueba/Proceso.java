@@ -1,4 +1,4 @@
-package tp4.prueba;
+package tp4.ej7.prueba;
 
 public abstract class Proceso implements Runnable{
     ConjRegistros conjRegistros;

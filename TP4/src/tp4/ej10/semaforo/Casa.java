@@ -1,4 +1,4 @@
-package tp4.ej10;
+package tp4.ej10.semaforo;
 
 import java.util.concurrent.Semaphore;
 

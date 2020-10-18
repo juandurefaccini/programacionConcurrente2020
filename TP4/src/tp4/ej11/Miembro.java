@@ -12,18 +12,20 @@ public class Miembro implements Runnable{
     @Override
     public void run() {
         while (true) {
-            System.out.println(Thread.currentThread().getId() + " Comienzo primera etapa");
+            System.out.println(Thread.currentThread().getId() + " >> Comienzo primera etapa");
             club.intentarPrimeraEtapa();
-            System.out.println(Thread.currentThread().getId() + " Primera etapa realizada");
+            System.out.println(Thread.currentThread().getId() + " >> Primera etapa realizada");
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(Thread.currentThread().getId() + " Comienzo Segunda terminado");
+            System.out.println(Thread.currentThread().getId() + " >> Comienzo Segunda etapa");
             club.intentarSegundaEtapa();
-            System.out.println(Thread.currentThread().getId() + " Segunda etapa terminada");
+            System.out.println(Thread.currentThread().getId() + " >> Segunda etapa terminada");
+            club.verSiHayVino();
             club.servirVino();
+            System.out.println(Thread.currentThread().getId() + " sirvio vino");
         }
     }
 }
